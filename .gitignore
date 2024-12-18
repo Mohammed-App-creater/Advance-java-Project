@@ -1,0 +1,42 @@
+# Build artifacts
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.log
+*.pid
+*.stackdump
+*.core
+
+# IDE-specific files
+.classpath
+.project
+.settings/
+*.iws
+*.iml
+*.ipr
+
+# Log files
+logs/
+*.log
+
+# Temporary files
+*.tmp
+*.swp
+
+# IDE-specific files
+.idea/
+
+# Tomcat-specific files (if not relevant to your project)
+apache-tomcat-10.1.34/
+apache-tomcat-10.1.34-src/
+
+# Other potentially sensitive files
+.env
+.secrets
+.keystore
+
+# OS generated files
+.DS_Store
+Thumbs.db
