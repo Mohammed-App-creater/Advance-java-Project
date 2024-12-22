@@ -199,10 +199,4 @@ Example URL for product details:
 http://localhost:8080/olineshoppingplatform/ProductDetailsServlet?id=1
 ```
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-Feel free to modify this `README.md` to match the specific needs and configurations of your frontend and backend setup. Let me know if you'd like more adjustments or if you need further help!
+# Thank you

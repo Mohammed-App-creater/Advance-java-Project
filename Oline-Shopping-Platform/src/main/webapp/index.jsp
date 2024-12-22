@@ -12,7 +12,7 @@
     <input type="text" name="num2"><br>
     <input type="submit" value="Submit">
 </form>
-<form action="LogIn" method="post">
+<form action="ProductDetailsServlet?id=1" method="get">
     <input type="text" name="email" placeholder="Username"><br>
     <input type="password" name="password" placeholder="Password"><br>
     <input type="submit" value="Login">
