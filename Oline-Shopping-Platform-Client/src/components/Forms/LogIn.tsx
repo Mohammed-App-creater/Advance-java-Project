@@ -17,8 +17,8 @@ const LogIn = () => {
         console.log(response.data.success);
         if (response.data.success) {
           console.log(response.data.success);
-          Navigate("/SignUp");
-        }else{
+          Navigate("/Landing");
+        } else {
           alert("Invalid email or password");
         }
       })
