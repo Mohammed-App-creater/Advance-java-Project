@@ -1,4 +1,4 @@
-package com.olineshoppingplatform.olineshoppingplatform;
+package com.olineshoppingplatform.olineshoppingplatform.Forms;
 
 import com.google.gson.JsonObject;
 import com.olineshoppingplatform.olineshoppingplatform.utils.ServletUtils;

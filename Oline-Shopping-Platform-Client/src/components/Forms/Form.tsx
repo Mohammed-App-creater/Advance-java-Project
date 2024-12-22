@@ -1,6 +1,6 @@
 import { useState, FocusEvent, ChangeEvent } from "react";
 import logo from "../../assets/photo_2024-12-03_09-36-25(1)(1)_enhanced.png";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Form = (props: {
   signup: boolean;
@@ -57,13 +57,7 @@ const Form = (props: {
     }
   };
 
-  async function auth() {
-    const response = await fetch("http://127.0.0.1:8000/request", {
-      method: "POST",
-    });
-    const data = await response.json();
-    Navigate(data.url);
-  }
+
 
   return (
     <div className="w-screen h-screen  flex  justify-center">
@@ -180,7 +174,6 @@ const Form = (props: {
             <hr className=" h-[1px] border border-[#c4c2c0] w-1/2" />
           </div>
           <div
-            onClick={() => auth()}
             className=" h-14 w-full border border-[#c2c8d0] rounded-md flex items-center px-4 gap-5 hover:bg-[#e6e8e6]"
           >
             <svg

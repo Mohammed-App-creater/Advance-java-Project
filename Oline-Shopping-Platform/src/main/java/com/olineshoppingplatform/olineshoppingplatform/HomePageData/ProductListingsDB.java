@@ -5,14 +5,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.olineshoppingplatform.olineshoppingplatform.utils.DBHelper;
 
 public class ProductListingsDB {
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/oline_shopping_platform_war_exploded";
-    private static final String DB_USER = "root";
-    private static final String DB_PASSWORD = "199605";
 
     public static JsonArray getProductListings(String category, int pageSize, int offset) throws Exception {
-        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
+        try (Connection connection = DBHelper.getConnection()) {
             String query = "SELECT p.product_id, p.name, p.description, p.price, p.discount, p.stock, c.name AS category_name " +
                     "FROM Products p " +
                     "JOIN categories c ON p.category_id = c.id " +

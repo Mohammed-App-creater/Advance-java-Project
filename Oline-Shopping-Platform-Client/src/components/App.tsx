@@ -3,6 +3,7 @@ import LogIn from "./Forms/LogIn";
 import SignUp from "./Forms/SignUp";
 import LandingPage from "./LadingPage";
 import ProductCard from "./ProductCard";
+import ProductDetailsPage from "./ProductDetailsPage";
 
 function App() {
   return (
@@ -11,8 +12,9 @@ function App() {
         <Routes>
           <Route path="/signUp" element={<SignUp />} />
           <Route path="/logIn" element={<LogIn />} />
-          <Route path="/" element={<ProductCard />} />
+          <Route path="/ProductCard" element={<ProductCard />} />
           <Route path="/Landing" element={<LandingPage />} />
+          <Route path="/" element={<ProductDetailsPage />} />
         </Routes>
       </BrowserRouter>
     </div>

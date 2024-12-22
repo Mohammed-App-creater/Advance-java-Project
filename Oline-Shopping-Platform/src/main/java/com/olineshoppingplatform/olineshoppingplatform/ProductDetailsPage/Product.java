@@ -1,3 +1,5 @@
+package com.olineshoppingplatform.olineshoppingplatform.ProductDetailsPage;
+
 public class Product {
     private int productId;
     private String name;
