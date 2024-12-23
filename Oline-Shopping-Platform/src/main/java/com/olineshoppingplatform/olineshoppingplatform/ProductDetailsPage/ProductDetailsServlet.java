@@ -8,7 +8,7 @@ import jakarta.servlet.http.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "ProductDetailsServlet", value = "/ProductDetailsServlet")
+@WebServlet(name = "ProductDetailsServlet", value = "/ProductDetailsServlet/*")
 public class ProductDetailsServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
