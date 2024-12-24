@@ -1,6 +1,5 @@
 package com.olineshoppingplatform.olineshoppingplatform.CustmerProfile;
 
-package com.olineshoppingplatform.olineshoppingplatform.Product;
 
 import com.olineshoppingplatform.olineshoppingplatform.utils.DBHelper;
 import com.olineshoppingplatform.olineshoppingplatform.utils.Product;

@@ -1,6 +1,8 @@
-# React Developer Guide for Order Confirmation Page
 
-This document provides detailed instructions for React developers integrating the **Order Confirmation Page** with the backend API.
+
+# Vite React Developer Guide for Order Confirmation Page with Redux
+
+This document provides detailed instructions for developers using **Vite React** with **Redux** to implement the **Order Confirmation Page** integrated with the backend API.
 
 ---
 
@@ -10,7 +12,7 @@ The Order Confirmation Page displays details about an order after it has been pl
 - List of ordered items (e.g., product name, quantity, and price).
 - Shipping details (e.g., tracking number, shipping status, and delivery date).
 
-The page fetches data from the backend API and renders it dynamically.
+The page fetches data from the backend API and renders it dynamically using **Redux** for state management.
 
 ---
 
@@ -59,51 +61,140 @@ GET /orderConfirmation
 
 ---
 
-## **Frontend Development Instructions**
+## **Setup Instructions**
 
-### 1. **Install Dependencies**
-Ensure you have the following libraries installed in your React project:
+### 1. **Initialize Vite Project**
+Create a Vite project with React and install Redux dependencies:
 
 ```bash
-npm install axios react-router-dom
+npm create vite@latest order-confirmation-page --template react
+cd order-confirmation-page
+npm install react-redux @reduxjs/toolkit axios react-router-dom
 ```
 
-### 2. **Create the Order Confirmation Page Component**
+---
+
+## **State Management with Redux**
+
+### 2. **Configure Redux Store**
+
+#### File Path:
+`src/store.js`
+
+#### Code:
+```javascript
+import { configureStore } from '@reduxjs/toolkit';
+import orderReducer from './slices/orderSlice';
+
+export const store = configureStore({
+    reducer: {
+        order: orderReducer,
+    },
+});
+```
+
+---
+
+### 3. **Create Order Slice**
+
+#### File Path:
+`src/slices/orderSlice.js`
+
+#### Code:
+```javascript
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
+
+// Async Thunk for Fetching Order Data
+export const fetchOrderDetails = createAsyncThunk(
+    'order/fetchOrderDetails',
+    async (orderId) => {
+        const response = await axios.get('/orderConfirmation', {
+            params: { orderId },
+        });
+        return response.data;
+    }
+);
+
+const orderSlice = createSlice({
+    name: 'order',
+    initialState: {
+        data: null,
+        loading: false,
+        error: null,
+    },
+    reducers: {},
+    extraReducers: (builder) => {
+        builder
+            .addCase(fetchOrderDetails.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(fetchOrderDetails.fulfilled, (state, action) => {
+                state.loading = false;
+                state.data = action.payload;
+            })
+            .addCase(fetchOrderDetails.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
+            });
+    },
+});
+
+export default orderSlice.reducer;
+```
+
+---
+
+### 4. **Wrap App with Redux Provider**
+
+#### File Path:
+`src/main.jsx`
+
+#### Code:
+```javascript
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux';
+import { store } from './store';
+import App from './App';
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+    <React.StrictMode>
+        <Provider store={store}>
+            <App />
+        </Provider>
+    </React.StrictMode>
+);
+```
+
+---
+
+## **Frontend Development Instructions**
+
+### 5. **Create the Order Confirmation Page Component**
 
 #### File Path:
 `src/pages/OrderConfirmation.jsx`
 
-#### Sample Code:
+#### Code:
 ```javascript
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchOrderDetails } from '../slices/orderSlice';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
 
 const OrderConfirmation = () => {
-    const { orderId } = useParams(); // Retrieve orderId from the URL.
-    const [orderData, setOrderData] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const { orderId } = useParams();
+    const dispatch = useDispatch();
+    const { data: orderData, loading, error } = useSelector((state) => state.order);
 
     useEffect(() => {
-        const fetchOrderData = async () => {
-            try {
-                const response = await axios.get(`/orderConfirmation`, {
-                    params: { orderId }
-                });
-                setOrderData(response.data);
-            } catch (err) {
-                setError('Failed to load order details.');
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchOrderData();
-    }, [orderId]);
+        dispatch(fetchOrderDetails(orderId));
+    }, [dispatch, orderId]);
 
     if (loading) return <div>Loading...</div>;
-    if (error) return <div>{error}</div>;
+    if (error) return <div>Error: {error}</div>;
 
     const { order, items, shipping } = orderData;
 
@@ -147,12 +238,14 @@ const OrderConfirmation = () => {
 export default OrderConfirmation;
 ```
 
-### 3. **Add Route for the Page**
+---
+
+### 6. **Add Route for the Page**
 
 #### File Path:
 `src/App.jsx`
 
-#### Add the Route:
+#### Code:
 ```javascript
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
@@ -172,61 +265,10 @@ function App() {
 export default App;
 ```
 
-### 4. **Styling (Optional)**
-Use Tailwind CSS or your preferred styling library to enhance the appearance of the page. Example:
-
-```css
-.order-confirmation {
-    padding: 2rem;
-}
-
-.order-summary, .order-items, .shipping-details {
-    margin-bottom: 2rem;
-}
-
-.order-items ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.order-items li {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1rem;
-}
-
-.order-items img {
-    margin-right: 1rem;
-    border-radius: 8px;
-}
-```
-
 ---
 
 ## **Testing**
-1. **Setup Local API Proxy (Optional):**
-   If the backend runs on a different port, configure a proxy in `vite.config.js`:
-   ```javascript
-   server: {
-       proxy: {
-           '/orderConfirmation': 'http://localhost:8080'
-       }
-   }
-   ```
+Follow the original React instructions for testing, updating any relevant proxy configurations in `vite.config.js` if needed.
 
-2. **Verify Endpoint:**
-   Test the backend API with a tool like Postman to ensure it returns the correct data.
-
-3. **Test the Page:**
-    - Navigate to `/order-confirmation/:orderId` in your React app.
-    - Verify that the page displays order details correctly.
-
----
-
-## **Notes**
-- Ensure the backend API is deployed and accessible to the frontend.
-- Handle any additional edge cases (e.g., empty orders, missing shipping data) as required.
-
----
-
+--- 
 

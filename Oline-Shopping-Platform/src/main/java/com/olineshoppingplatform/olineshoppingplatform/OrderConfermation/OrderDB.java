@@ -1,7 +1,6 @@
 package com.olineshoppingplatform.olineshoppingplatform.OrderConfermation;
 
 
-import com.olineshoppingplatform.olineshoppingplatform.utils.Order;
 import com.olineshoppingplatform.olineshoppingplatform.utils.OrderItem;
 import com.olineshoppingplatform.olineshoppingplatform.utils.Shipping;
 
