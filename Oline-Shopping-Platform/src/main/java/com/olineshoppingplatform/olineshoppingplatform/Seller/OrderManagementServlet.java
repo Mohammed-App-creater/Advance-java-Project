@@ -18,8 +18,8 @@ public class OrderManagementServlet extends HttpServlet {
 
         // Get orders related to the seller
         OrderDAO orderDAO = new OrderDAO();
-//        List<Order> orders = orderDAO.getOrdersBySeller(sellerId);
-//        request.setAttribute("orders", orders);
+        List<Order> orders = orderDAO.getOrdersBySeller(sellerId);
+        request.setAttribute("orders", orders);
 
         // Forward to the order management page
         RequestDispatcher dispatcher = request.getRequestDispatcher("/seller/order-management.jsp");

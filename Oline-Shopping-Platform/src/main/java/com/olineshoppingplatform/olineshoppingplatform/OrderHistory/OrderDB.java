@@ -30,7 +30,7 @@ public class OrderDB {
             while (resultSet.next()) {
                 Order order = new Order();
                 order.setOrderId(resultSet.getInt("order_id"));
-                order.setOrderDate(resultSet.getDate("order_date"));
+                order.setOrderDate(resultSet.getTimestamp("order_date"));
                 order.setTotalAmount(BigDecimal.valueOf(resultSet.getDouble("total_amount")));
                 order.setStatus(resultSet.getString("order_status")); // Use "order_status" alias here
                 order.setTrackingNumber(resultSet.getString("tracking_number"));

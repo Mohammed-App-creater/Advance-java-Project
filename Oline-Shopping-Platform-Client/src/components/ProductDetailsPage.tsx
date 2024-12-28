@@ -27,7 +27,7 @@ const ProductDetailsPage: React.FC = () => {
 
   useEffect(() => {
     // Fetch product details from the backend API
-    axios.get(`http://localhost:8080/Oline_Shopping_Platform_war_exploded/ProductDetailsServlet?email=mohammedisamil160@gmail.com&password=12345678&id=${productId}`)
+    axios.get(`http://localhost:8080/ProductDetailsServlet?email=mohammedisamil160@gmail.com&password=12345678&id=${productId}`)
       .then((response) => {
         setProduct(response.data.product);
       })

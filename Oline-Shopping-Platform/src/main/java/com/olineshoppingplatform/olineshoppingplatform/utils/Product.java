@@ -28,6 +28,15 @@ public class Product {
         this.categoryId = categoryId;
     }
 
+    public Product(int productId, String name, String description) {
+    }
+
+    public Product(String name, String description, BigDecimal price, int stock, String category, int sellerId) {
+    }
+
+    public Product(int productId, String name, String description, BigDecimal price, int stock) {
+    }
+
     // Getters and Setters
     public int getProductId() {
         return productId;

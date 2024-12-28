@@ -2,7 +2,6 @@ package com.olineshoppingplatform.olineshoppingplatform.Seller;
 
 import com.olineshoppingplatform.olineshoppingplatform.utils.DBHelper;
 import com.olineshoppingplatform.olineshoppingplatform.utils.Product;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,16 +18,16 @@ public class ProductDAO {
             stmt.setInt(1, sellerId);
             ResultSet rs = stmt.executeQuery();
 
-//            while (rs.next()) {
-//                Product product = new Product(
-//                        rs.getInt("product_id"),
-//                        rs.getString("name"),
-//                        rs.getString("description"),
+            while (rs.next()) {
+                Product product = new Product(
+                        rs.getInt("product_id"),
+                        rs.getString("name"),
+                        rs.getString("description")
 //                        rs.getBigDecimal("price"),
 //                        rs.getInt("stock")
-//                );
-//                products.add(product);
-//            }
+                );
+                products.add(product);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

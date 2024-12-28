@@ -9,16 +9,15 @@ import java.io.PrintWriter;
 
 @WebServlet(name = "StudentServlet", value = "/register")
 public class StudentServlet extends HttpServlet {
-    private StudentDAO studentDAO;
+    private StudentDB studentDB;
 
     @Override
     public void init() {
-        studentDAO = new StudentDAO(); // Initialize the DAO
+        studentDB = new StudentDB();
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Get input data from the form
         String name = request.getParameter("name");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
@@ -26,17 +25,16 @@ public class StudentServlet extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
 
-        // Register the student
         boolean isRegistered = false;
         try {
-            isRegistered = studentDAO.registerStudent(name, email, password);
+            isRegistered = studentDB.registerStudent(name, email, password);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
         if (isRegistered) {
             out.println("<h3>Student registered successfully!</h3>");
         } else {
-            out.println("<h3>Failed to register the student. Email might already be in use.</h3>");
+            out.println("<h3>Failed to register the student. </h3>");
         }
     }
 }

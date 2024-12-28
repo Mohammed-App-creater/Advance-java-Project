@@ -9,10 +9,11 @@ import java.util.List;
 public class ProductDB {
 
     // Fetch product details by product_id
-    public static Product getProductById(int productId) {
+    public static Product getProductById(int productId) throws ClassNotFoundException {
+
         Product product = null;
         String query = "SELECT * FROM products WHERE product_id = ?";
-
+        Class.forName("com.mysql.cj.jdbc.Driver");
         try (Connection connection = DBHelper.getConnection();
              PreparedStatement ps = connection.prepareStatement(query)) {
 

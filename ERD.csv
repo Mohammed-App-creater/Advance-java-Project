@@ -1,0 +1,109 @@
+dbms,TABLE_SCHEMA,TABLE_NAME,COLUMN_NAME,ORDINAL_POSITION,DATA_TYPE,CHARACTER_MAXIMUM_LENGTH,CONSTRAINT_TYPE,REFERENCED_TABLE_SCHEMA,REFERENCED_TABLE_NAME,REFERENCED_COLUMN_NAME
+mysql,sys,sys_config,variable,1,varchar,128,"PRIMARY KEY",NULL,NULL,NULL
+mysql,sys,sys_config,value,2,varchar,128,NULL,NULL,NULL,NULL
+mysql,sys,sys_config,set_time,3,timestamp,NULL,NULL,NULL,NULL,NULL
+mysql,sys,sys_config,set_by,4,varchar,128,NULL,NULL,NULL,NULL
+mysql,astu,stud,Id,1,varchar,15,NULL,NULL,NULL,NULL
+mysql,astu,stud,Name_stud,2,varchar,25,NULL,NULL,NULL,NULL
+mysql,astu,stud,Dip,3,varchar,10,NULL,NULL,NULL,NULL
+mysql,astu,stud,Gread,4,int,NULL,NULL,NULL,NULL,NULL
+mysql,bankdb,customer,CustomerID,1,varchar,10,"PRIMARY KEY",NULL,NULL,NULL
+mysql,bankdb,customer,FullName,2,varchar,50,NULL,NULL,NULL,NULL
+mysql,bankdb,customer,CustAddress,3,varchar,100,NULL,NULL,NULL,NULL
+mysql,bankdb,customer,PhoneNumber,4,varchar,20,UNIQUE,NULL,NULL,NULL
+mysql,bankdb,customer,Email,5,varchar,50,UNIQUE,NULL,NULL,NULL
+mysql,bankdb,customer,DateOfBirth,6,date,NULL,NULL,NULL,NULL,NULL
+mysql,bankdb,account,AccountNumber,1,varchar,10,"PRIMARY KEY",NULL,NULL,NULL
+mysql,bankdb,account,AccountType,2,varchar,20,NULL,NULL,NULL,NULL
+mysql,bankdb,account,Balance,3,decimal,NULL,NULL,NULL,NULL,NULL
+mysql,bankdb,account,CustomerID,4,varchar,10,"FOREIGN KEY",bankdb,customer,CustomerID
+mysql,bankdb,banktransaction,TransactionID,1,int,NULL,"PRIMARY KEY",NULL,NULL,NULL
+mysql,bankdb,banktransaction,TransactionType,2,varchar,20,NULL,NULL,NULL,NULL
+mysql,bankdb,banktransaction,Amount,3,decimal,NULL,NULL,NULL,NULL,NULL
+mysql,bankdb,banktransaction,Description,4,varchar,100,NULL,NULL,NULL,NULL
+mysql,bankdb,banktransaction,AccountNumber,5,varchar,10,"FOREIGN KEY",bankdb,account,AccountNumber
+mysql,oline_shopping_platform_war_exploded,products,product_id,1,int,NULL,"PRIMARY KEY",NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,products,name,2,varchar,255,NULL,NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,products,description,3,text,65535,NULL,NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,products,image_url,4,varchar,500,NULL,NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,products,price,5,decimal,NULL,NULL,NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,products,discount,6,decimal,NULL,NULL,NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,products,category_id,7,int,NULL,NULL,NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,products,stock,8,int,NULL,NULL,NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,products,seller_id,9,int,NULL,NULL,NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,products,created_at,10,timestamp,NULL,NULL,NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,products,updated_at,11,timestamp,NULL,NULL,NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,users,id,1,int,NULL,"PRIMARY KEY",NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,users,username,2,varchar,255,NULL,NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,users,password,3,varchar,255,NULL,NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,users,email,4,varchar,255,UNIQUE,NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,users,role,5,enum,8,NULL,NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,users,created_at,6,timestamp,NULL,NULL,NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,users,updated_at,7,timestamp,NULL,NULL,NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,orders,id,1,int,NULL,"PRIMARY KEY",NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,orders,customer_id,2,int,NULL,"FOREIGN KEY",oline_shopping_platform_war_exploded,users,id
+mysql,oline_shopping_platform_war_exploded,orders,order_date,3,timestamp,NULL,NULL,NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,orders,total_amount,4,decimal,NULL,NULL,NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,orders,shipping_address,5,text,65535,NULL,NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,orders,status,6,enum,9,NULL,NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,orders,created_at,7,timestamp,NULL,NULL,NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,orders,updated_at,8,timestamp,NULL,NULL,NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,order_items,id,1,int,NULL,"PRIMARY KEY",NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,order_items,order_id,2,int,NULL,"FOREIGN KEY",oline_shopping_platform_war_exploded,orders,id
+mysql,oline_shopping_platform_war_exploded,order_items,product_id,3,int,NULL,"FOREIGN KEY",oline_shopping_platform_war_exploded,products,product_id
+mysql,oline_shopping_platform_war_exploded,order_items,quantity,4,int,NULL,NULL,NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,order_items,price,5,decimal,NULL,NULL,NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,order_items,created_at,6,timestamp,NULL,NULL,NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,payments,id,1,int,NULL,"PRIMARY KEY",NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,payments,order_id,2,int,NULL,"FOREIGN KEY",oline_shopping_platform_war_exploded,orders,id
+mysql,oline_shopping_platform_war_exploded,payments,bank_name,3,varchar,255,NULL,NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,payments,payment_status,4,enum,9,NULL,NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,payments,payment_date,5,timestamp,NULL,NULL,NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,payments,amount,6,decimal,NULL,NULL,NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,shipping,id,1,int,NULL,"PRIMARY KEY",NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,shipping,order_id,2,int,NULL,"FOREIGN KEY",oline_shopping_platform_war_exploded,orders,id
+mysql,oline_shopping_platform_war_exploded,shipping,tracking_number,3,varchar,100,NULL,NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,shipping,shipping_status,4,enum,10,NULL,NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,shipping,shipping_date,5,timestamp,NULL,NULL,NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,shipping,delivery_date,6,timestamp,NULL,NULL,NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,inventory,id,1,int,NULL,"PRIMARY KEY",NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,inventory,product_id,2,int,NULL,"FOREIGN KEY",oline_shopping_platform_war_exploded,products,product_id
+mysql,oline_shopping_platform_war_exploded,inventory,seller_id,3,int,NULL,"FOREIGN KEY",oline_shopping_platform_war_exploded,users,id
+mysql,oline_shopping_platform_war_exploded,inventory,quantity_available,4,int,NULL,NULL,NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,inventory,updated_at,5,timestamp,NULL,NULL,NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,categories,id,1,int,NULL,"PRIMARY KEY",NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,categories,name,2,varchar,255,NULL,NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,categories,created_at,3,timestamp,NULL,NULL,NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,categories,updated_at,4,timestamp,NULL,NULL,NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,ratings,id,1,int,NULL,"PRIMARY KEY",NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,ratings,product_id,2,int,NULL,"FOREIGN KEY",oline_shopping_platform_war_exploded,products,product_id
+mysql,oline_shopping_platform_war_exploded,ratings,customer_id,3,int,NULL,"FOREIGN KEY",oline_shopping_platform_war_exploded,users,id
+mysql,oline_shopping_platform_war_exploded,ratings,rating,4,decimal,NULL,NULL,NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,ratings,review_text,5,text,65535,NULL,NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,ratings,created_at,6,timestamp,NULL,NULL,NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,cart,id,1,int,NULL,"PRIMARY KEY",NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,cart,user_id,2,int,NULL,"FOREIGN KEY",oline_shopping_platform_war_exploded,users,id
+mysql,oline_shopping_platform_war_exploded,cart,product_id,3,int,NULL,"FOREIGN KEY",oline_shopping_platform_war_exploded,products,product_id
+mysql,oline_shopping_platform_war_exploded,cart,quantity,4,int,NULL,NULL,NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,cart,added_at,5,timestamp,NULL,NULL,NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,cart,updated_at,6,timestamp,NULL,NULL,NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,shipping_addresses,id,1,int,NULL,"PRIMARY KEY",NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,shipping_addresses,user_id,2,int,NULL,"FOREIGN KEY",oline_shopping_platform_war_exploded,users,id
+mysql,oline_shopping_platform_war_exploded,shipping_addresses,address_line1,3,varchar,255,NULL,NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,shipping_addresses,address_line2,4,varchar,255,NULL,NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,shipping_addresses,city,5,varchar,100,NULL,NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,shipping_addresses,state,6,varchar,100,NULL,NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,shipping_addresses,postal_code,7,varchar,20,NULL,NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,shipping_addresses,country,8,varchar,100,NULL,NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,shipping_addresses,created_at,9,timestamp,NULL,NULL,NULL,NULL,NULL
+mysql,oline_shopping_platform_war_exploded,shipping_addresses,updated_at,10,timestamp,NULL,NULL,NULL,NULL,NULL
+mysql,bankdb,students,id,1,int,NULL,"PRIMARY KEY",NULL,NULL,NULL
+mysql,bankdb,students,name,2,varchar,100,NULL,NULL,NULL,NULL
+mysql,bankdb,students,email,3,varchar,100,UNIQUE,NULL,NULL,NULL
+mysql,bankdb,students,password,4,varchar,255,NULL,NULL,NULL,NULL
+mysql,bankdb,students,created_at,5,timestamp,NULL,NULL,NULL,NULL,NULL
+mysql,astu,students,id,1,int,NULL,"PRIMARY KEY",NULL,NULL,NULL
+mysql,astu,students,name,2,varchar,100,NULL,NULL,NULL,NULL
+mysql,astu,students,email,3,varchar,100,UNIQUE,NULL,NULL,NULL
+mysql,astu,students,password,4,varchar,255,NULL,NULL,NULL,NULL
+mysql,astu,students,created_at,5,timestamp,NULL,NULL,NULL,NULL,NULL

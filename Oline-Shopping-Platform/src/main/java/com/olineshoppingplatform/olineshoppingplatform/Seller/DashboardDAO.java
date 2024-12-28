@@ -20,7 +20,7 @@ public class DashboardDAO {
 
         try (Connection conn = DBHelper.getConnection()) {
             String query = "SELECT SUM(total_amount) AS total_sales, COUNT(*) AS total_orders " +
-                    "FROM orders WHERE seller_id = ?";
+                    "FROM orders WHERE id = ?";
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setInt(1, sellerId);
             ResultSet rs = stmt.executeQuery();

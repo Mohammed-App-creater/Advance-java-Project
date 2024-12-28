@@ -38,13 +38,13 @@ public class UserManagementDAO {
 
     // Activate/Deactivate user
     public void updateUserStatus(int userId, boolean isActive) throws SQLException {
-        String query = "UPDATE users SET is_active = ? WHERE id = ?";
-        try (PreparedStatement stmt = connection.prepareStatement(query)) {
-            stmt.setBoolean(1, isActive);
-            stmt.setInt(2, userId);
-            stmt.executeUpdate();
-        }
-    }
+//        String query = "UPDATE users SET is_active = ? WHERE id = ?";
+//        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+//            stmt.setBoolean(1, isActive);
+//            stmt.setInt(2, userId);
+//            stmt.executeUpdate();
+//        }
+     }
 
     // Reset user password
     public void resetUserPassword(int userId, String newPassword) throws SQLException {
@@ -54,6 +54,9 @@ public class UserManagementDAO {
             stmt.setInt(2, userId);
             stmt.executeUpdate();
         }
+    }
+
+    public void resetPassword(int userId, String newPassword) {
     }
 }
 

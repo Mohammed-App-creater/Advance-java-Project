@@ -14,7 +14,7 @@ const LogIn = () => {
         }
       )
       .then((response) => {
-        console.log(response.data.success);
+        console.log(response);
         if (response.data.success) {
           console.log(response.data.success);
           Navigate("/Landing");

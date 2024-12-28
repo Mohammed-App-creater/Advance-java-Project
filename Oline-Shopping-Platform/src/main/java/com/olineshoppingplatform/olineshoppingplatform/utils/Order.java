@@ -8,7 +8,7 @@ import java.sql.Timestamp;
 public class Order {
     private int orderId;
     private String customerName;
-    private Date orderDate;
+    private Timestamp orderDate;
     private BigDecimal totalAmount;
     private String shippingAddress;
     private String status;
@@ -18,7 +18,7 @@ public class Order {
     // Constructors
     public Order() {}
 
-    public Order(int orderId, String customerName, Date orderDate, BigDecimal totalAmount, String shippingAddress, String status) {
+    public Order(int orderId, String customerName, Timestamp orderDate, BigDecimal totalAmount, String shippingAddress, String status) {
         this.orderId = orderId;
         this.customerName = customerName;
         this.orderDate = orderDate;
@@ -47,11 +47,11 @@ public class Order {
         this.customerName = customerName;
     }
 
-    public Date getOrderDate() {
+    public Timestamp getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(Date orderDate) {
+    public void setOrderDate(Timestamp orderDate) {
         this.orderDate = orderDate;
     }
 

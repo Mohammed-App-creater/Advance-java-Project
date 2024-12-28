@@ -18,8 +18,8 @@ public class InventoryManagementServlet extends HttpServlet {
 
         // Get inventory and low-stock products
         InventoryDAO inventoryDAO = new InventoryDAO();
-       // List<Inventory> inventoryList = inventoryDAO.getInventory(sellerId);
-        //request.setAttribute("inventory", inventoryList);
+        List<Inventory> inventoryList = inventoryDAO.getInventory(sellerId);
+        request.setAttribute("inventory", inventoryList);
 
         // Forward to the inventory management page
         RequestDispatcher dispatcher = request.getRequestDispatcher("/seller/inventory-management.jsp");

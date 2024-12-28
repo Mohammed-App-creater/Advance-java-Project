@@ -5,17 +5,18 @@
     <title>JSP - Hello World</title>
 </head>
 <body>
-<h1><%= "Hello World!" %>
-</h1>
-<form action="hello-servlet" method="post">
-    <input type="text" name="num1"><br>
-    <input type="text" name="num2"><br>
-    <input type="submit" value="Submit">
-</form>
-<form action="ProductDetailsServlet?id=1" method="get">
-    <input type="text" name="email" placeholder="Username"><br>
-    <input type="password" name="password" placeholder="Password"><br>
-    <input type="submit" value="Login">
+<h2>Register Student</h2>
+<form action="register" method="post">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required><br><br>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required><br><br>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required><br><br>
+
+    <button type="submit">Register</button>
 </form>
 
 <br/>

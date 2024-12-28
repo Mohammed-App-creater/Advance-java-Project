@@ -1,7 +1,5 @@
 package com.olineshoppingplatform.olineshoppingplatform.Admin;
 
-package com.onlineshoppingplatform.models;
-
 import java.math.BigDecimal;
 
 public class DashboardSummary {

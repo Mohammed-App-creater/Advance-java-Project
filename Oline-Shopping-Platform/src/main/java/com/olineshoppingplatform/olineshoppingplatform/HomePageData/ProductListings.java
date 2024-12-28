@@ -3,6 +3,7 @@ package com.olineshoppingplatform.olineshoppingplatform.HomePageData;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.olineshoppingplatform.olineshoppingplatform.utils.ServletUtils;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -18,27 +19,11 @@ public class ProductListings extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
         // Set headers for CORS and response type
-        res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173");
-        res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
-        res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-        res.setContentType("application/json");
+        ServletUtils.setCorsHeaders(res);
 
-        // Read request body
-        StringBuilder requestBody = new StringBuilder();
-        BufferedReader reader = req.getReader();
-        String line;
-        while ((line = reader.readLine()) != null) {
-            requestBody.append(line);
-        }
+        JsonObject jsonObject = ServletUtils.parseJsonRequestBody(req, res);
 
-        JsonObject jsonObject;
-        try {
-            jsonObject = JsonParser.parseString(requestBody.toString()).getAsJsonObject();
-        } catch (Exception e) {
-            res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            res.getWriter().write("{\"error\": \"Invalid JSON format\"}");
-            return;
-        }
+
 
         // Extract parameters (example: category name, page size, and offset)
         String category = jsonObject.get("category").getAsString();
@@ -47,7 +32,9 @@ public class ProductListings extends HttpServlet {
 
         // Fetch products from the database
         try {
+            System.out.println(category + pageSize + offset + " here 1234");
             JsonArray products = ProductListingsDB.getProductListings(category, pageSize, offset);
+            System.out.println(products + " here 1234");
             PrintWriter out = res.getWriter();
             out.write(products.toString());  // Return the products as JSON response
         } catch (Exception e) {
@@ -58,9 +45,7 @@ public class ProductListings extends HttpServlet {
 
     @Override
     protected void doOptions(HttpServletRequest request, HttpServletResponse response) {
-        response.setHeader("Access-Control-Allow-Origin", "http://localhost:5173");
-        response.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
-        response.setHeader("Access-Control-Allow-Headers", "Content-Type");
+        ServletUtils.setCorsHeaders(response);
         response.setStatus(HttpServletResponse.SC_OK);
     }
 }
