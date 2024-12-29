@@ -1,5 +1,5 @@
 import NavBar from "../component/NavBar";
-import Footer from "../component/footer";
+import Footer from "../component/Footer";
 
 const UserDetails = () => {
   return (

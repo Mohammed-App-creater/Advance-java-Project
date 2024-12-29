@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 const ProductCard = (props) => {
   const navigate = useNavigate();
   const products = props.products || []; // Ensure 'products' is passed correctly from the parent
-  console.log(products);
 
   const handleClick = () => {
     console.log("clicked");

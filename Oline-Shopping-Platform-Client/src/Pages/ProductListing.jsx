@@ -2,13 +2,16 @@ import ProductCard from "../component/ProductCard";
 import NavBar from "../component/NavBar";
 import Footer from "../component/Footer";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
 import { useState, useEffect, useCallback } from "react";
 
 function ProductListing() {
   const [products, setProducts] = useState([]);
   const [offset, setOffset] = useState(0);
-  const pageSize = 8; 
-  const category = ""; 
+  const location = useLocation();
+  const pageSize = 8;
+  const category = location.state ? location.state.Category : "";
+
 
   const NextPage = () => {
     setOffset(offset + 1);
@@ -24,9 +27,9 @@ function ProductListing() {
       const response = await axios.post(
         "http://localhost:8080/Oline_Shopping_Platform_war_exploded/HomeProductListings",
         {
-          category, 
-          pageSize, 
-          offset, 
+          category,
+          pageSize,
+          offset,
         }
       );
       setProducts(response.data);
@@ -51,7 +54,7 @@ function ProductListing() {
           </div>
         </div>
         <div className="w-full h-fit grid grid-cols-4 gap-4  p-4 mt-6">
-            <ProductCard  products={products} />
+          <ProductCard products={products} />
         </div>
         <div className="w-full h-20 flex items-center justify-center gap-4 mt-8">
           <button
