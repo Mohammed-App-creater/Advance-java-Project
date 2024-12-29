@@ -95,7 +95,7 @@ public class ProductListingsDB {
                 product.addProperty("rating", rs.getInt("rating"));
                 products.add(product);
             }
-            System.out.println(products + " mope nope");
+            System.out.println(products + " mope nope");//debug
 
             return products;
         } catch (SQLException e) {

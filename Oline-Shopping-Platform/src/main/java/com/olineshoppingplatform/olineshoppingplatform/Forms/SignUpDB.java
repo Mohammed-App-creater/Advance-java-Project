@@ -1,7 +1,6 @@
 package com.olineshoppingplatform.olineshoppingplatform.Forms;
 
 import com.olineshoppingplatform.olineshoppingplatform.utils.DBHelper;
-
 import java.sql.*;
 
 public class SignUpDB {

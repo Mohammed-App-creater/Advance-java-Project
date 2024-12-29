@@ -32,9 +32,9 @@ public class ProductListings extends HttpServlet {
 
         // Fetch products from the database
         try {
-            System.out.println(category + pageSize + offset + " here 1234");
+            System.out.println(category + pageSize + offset + " here 1234");//debug
             JsonArray products = ProductListingsDB.getProductListings(category, pageSize, offset);
-            System.out.println(products + " here 1234");
+            System.out.println(products + " here 1234");//debug
             PrintWriter out = res.getWriter();
             out.write(products.toString());  // Return the products as JSON response
         } catch (Exception e) {
