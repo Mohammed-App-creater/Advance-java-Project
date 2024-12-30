@@ -2,34 +2,34 @@ import NavBar from "../component/NavBar";
 import heart from "../assets/NavIcons/HeartIcon.svg";
 import Barkstart from "../assets/ProductCard_Icons/Vector.svg";
 import start from "../assets/ProductCard_Icons/StarLight.svg";
-import img1 from "../assets/testImages/image 57.png";
-import img2 from "../assets/testImages/image 58.png";
-import img3 from "../assets/testImages/image 59.png";
-import img4 from "../assets/testImages/image 61.png";
-import img5 from "../assets/testImages/image 63.png";
 import car from "../assets/ProductCard_Icons/icon-delivery.svg";
 import Return from "../assets/ProductCard_Icons/Icon-return.svg";
 import Footer from "../component/Footer";
 import ProductCard from "../component/ProductCard";
+import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 const ProductDetails = () => {
   const [amount, setAmount] = useState(1);
-  const rating = 4;
-  const num = 4;
-
+  const [product, setProduct] = useState({});
+  const [reviews, setReviews] = useState([]);
+  const location = useLocation();
+  let rating = reviews.length > 0 && !isNaN(reviews[0].rating) ? Math.floor(reviews[0].rating) : 4;
+  
   const handlClickMinus = () => {
     if (amount > 1) {
       setAmount(amount - 1);
     }
   };
   const handlClickPlus = () => {
-    setAmount(amount + 1);
+    if (amount < product.stock) {
+      setAmount(amount + 1);
+    }
   };
-
-  const [product, setProduct] = useState(null);
-  const [reviews, setReviews] = useState([]);
-  const productId = 1; 
+  
+  const productId = location.state.id;
+  const products = location.state.products;
+  const products4 = products.slice(0, 4);
 
   useEffect(() => {
     const url =
@@ -42,12 +42,13 @@ const ProductDetails = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ id: productId }),
+          body: JSON.stringify({ id: productId }), // Send product ID as JSON
         });
 
         if (!response.ok) {
+          // Handle HTTP errors
           throw new Error(
-            `HTTP Error: ${response.status} ${response.statusText}`
+            `HTTP Error: ${response.status} - ${response.statusText}`
           );
         }
 
@@ -55,14 +56,16 @@ const ProductDetails = () => {
         setProduct(data.product);
         setReviews(data.reviews);
       } catch (error) {
-        console.log(error);
-      } finally {
-        console.log("Product details fetched successfully", product, reviews);
+        console.error("Failed to fetch product details:", error);
       }
     };
 
-    fetchData();
+    if (productId) {
+      fetchData();
+    }
   }, [productId]);
+
+  
 
   return (
     <section className=" w-full   h-fit  flex flex-col justify-center items-center">
@@ -78,27 +81,47 @@ const ProductDetails = () => {
       </div>
       <section className="w-full   h-fit max-w-7xl flex gap-8  items-center justify-center">
         <div className="w-[20%] flex flex-col gap-4 justify-center items-center mt-8">
-          <div className="w-full max-w-[170px] h-[200px] max-h-[140px] flex justify-center items-center  bg-[#F5F5F5] rounded-md">
-            <img src={img1} alt="" />
+          <div className="w-full max-w-[170px] h-[200px] max-h-[140px] flex justify-center items-center  bg-[#F5F5F5] rounded-md bg-contain">
+            <img
+              className=" object-contain w-1/2  "
+              src={product.imageUrl}
+              alt=""
+            />
           </div>
           <div className="w-full max-w-[170px] h-[200px] max-h-[140px] flex justify-center items-center  bg-[#F5F5F5] rounded-md">
-            <img src={img2} alt="" />
+            <img
+              className=" object-contain w-1/2  "
+              src={product.imageUrl}
+              alt=""
+            />
           </div>
           <div className="w-full max-w-[170px] h-[200px] max-h-[140px] flex justify-center items-center  bg-[#F5F5F5] rounded-md">
-            <img src={img3} alt="" />
+            <img
+              className=" object-contain w-1/2  "
+              src={product.imageUrl}
+              alt=""
+            />
           </div>
           <div className="w-full max-w-[170px] h-[200px] max-h-[140px] flex justify-center items-center  bg-[#F5F5F5] rounded-md">
-            <img src={img4} alt="" />
+            <img
+              className=" object-contain w-1/2  "
+              src={product.imageUrl}
+              alt=""
+            />
           </div>
         </div>
         <div className="w-[38%] h-[605px] flex justify-center items-center bg-[#F5F5F5] rounded-md mt-8">
           <div className="w-full h-full  flex justify-center items-center  ">
-            <img src={img5} alt="" />
+            <img
+              className=" object-contain w-1/2  "
+              src={product.imageUrl}
+              alt=""
+            />
           </div>
         </div>
 
         <div className="w-[38%] h-[600px] p-4 flex flex-col gap-4   mt-8">
-          <h1 className="text-3xl font-semibold">Havic HV G-92 Gamepad </h1>
+          <h1 className="text-3xl font-semibold">{product.name}</h1>
           <div className="w-full h-8 flex items-center   gap-4 ">
             <div className=" w-28 h-4 flex justify-between items-center">
               {[...Array(rating)].map((_, index) => (
@@ -120,16 +143,14 @@ const ProductDetails = () => {
             </div>
             <p className="text-[#00000082]">(150 - Review)</p>
             <p className="text-[#00000082]">|</p>
-            <span className=" text-[#00FF66]">In stock</span>
+            <span className=" text-[#00FF66]">
+              {product.stock > 1 ? "In stock" : "Out of stock"}
+            </span>
           </div>
           <div className="w-full h-8 flex items-center   gap-4 ">
-            <p className="text-2xl font-semibold">192 ETB</p>
+            <p className="text-2xl font-semibold">{product.price} ETB</p>
           </div>
-          <p>
-            PlayStation 5 Controller Skin High quality vinyl with air channel
-            adhesive for easy bubble free install & mess free removal Pressure
-            sensitive.
-          </p>
+          <p>{product.description}</p>
           <hr className="w-full h-[2px] bg-[#00000036] " />
           <div className="w-full h-11 flex items-center justify-between">
             <div className="w-[38%] h-ful flex items-center  rounded-md overflow-hidden">
@@ -191,10 +212,8 @@ const ProductDetails = () => {
             Related Products
           </h1>
         </div>
-        <div className="w-full h-fit grid grid-cols-4 gap-4  p-4 mt-6">
-          {[...Array(num)].map((_, index) => (
-            <ProductCard key={index} products={[]} />
-          ))}
+        <div className="w-full h-fit grid grid-cols-4 gap-4  p-4 mt-6 overflow-auto">
+            <ProductCard products={products4} />
         </div>
       </section>
       <div className=" w-full h-fit  bottom-0 mt-32">

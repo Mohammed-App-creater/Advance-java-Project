@@ -79,6 +79,13 @@
             <artifactId>json</artifactId>
             <version>20210307</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-catalina</artifactId>
+            <version>10.1.14</version> <!-- Use the version compatible with your project -->
+            <scope>provided</scope>
+        </dependency>
+
     </dependencies>
 
     <build>

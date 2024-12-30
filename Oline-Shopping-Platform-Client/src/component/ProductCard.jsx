@@ -12,17 +12,12 @@ const ProductCard = (props) => {
     console.log("clicked");
   };
 
-  const DetailClick = () => {
-    const data = products[0];
-    navigate("/Details", { state: data });
-  };
-
   return (
     <>
       {products.length > 0 ? (
         products.map((product) => (
           <div
-            onClick={() => DetailClick(product)}
+            onClick={() => navigate("/Details", { state: { id: product.id, products: products } })}
             key={product.id}
             className="w-fit max-w-[320px] h-auto max-h-[420px] rounded-lg shadow-2xl flex flex-col justify-between items-center overflow-hidden"
           >
@@ -36,7 +31,7 @@ const ProductCard = (props) => {
             <div className="w-11/12 rounded-md">
               <div className=" relative  w-full flex flex-row gap-24 items-center mt-2">
                 <h1 className="font-bold max-w-44 h-fit text-wrap">
-                  {product.name}
+                  {product.name}products
                 </h1>
                 <div className=" absolute right-10 top-0  w-6 h-6 flex justify-center items-center">
                   {[...Array(product.rating)].map((_, index) => (
