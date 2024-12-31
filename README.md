@@ -1,4 +1,3 @@
-```markdown
 # Online Shopping Platform
 
 This project provides a complete **Online Shopping Platform** with a fully integrated backend and frontend. It includes features such as user management, product listings, shopping cart functionality, and more.
