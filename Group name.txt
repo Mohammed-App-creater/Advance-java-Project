@@ -1,0 +1,5 @@
+Name 			ID 		Section
+Mohammed Ismail 	UGR/30945/15 	3
+Gadis Yusuf 		UGR/30578/15 	3
+Bayisa Balcha 		UGR/30232/15 	3
+Ibrahim Muhaba 		UGR/30700/15 	3

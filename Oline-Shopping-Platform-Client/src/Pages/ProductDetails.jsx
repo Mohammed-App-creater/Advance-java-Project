@@ -65,7 +65,8 @@ const ProductDetails = () => {
     }
   }, [productId]);
 
-  
+  const userId = sessionStorage.getItem("userId");
+  console.log("User ID:", userId);
 
   return (
     <section className=" w-full   h-fit  flex flex-col justify-center items-center">
