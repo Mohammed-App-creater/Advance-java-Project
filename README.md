@@ -17,6 +17,7 @@ This project is a full-stack online shopping platform built with **Java Servlets
 8. [Key Commands](#key-commands)
 9. [Database Schema](#database-schema)
 10. [License](#license)
+11. [Screenshoots](#screenshots)
 
 ---
 
@@ -349,18 +350,16 @@ This project is licensed under the MIT License. See `LICENSE` for details.
 ## Screenshots
 
 ### Frontend Example: 
-![Signup Page](path_to_screenshot/product-details.png)
+![Signup Page](https://github.com/Moh-Sad/Advanced-Java-Project/blob/main/Screenshots/signup.png)
 
-![Signup Page](path_to_screenshot/product-details.png)
+![Login Page](https://github.com/Moh-Sad/Advanced-Java-Project/blob/main/Screenshots/login.png)
 
-![Signup Page](path_to_screenshot/product-details.png)
+![Landing Page](https://github.com/Moh-Sad/Advanced-Java-Project/blob/main/Screenshots/Landingpage.png)
 
-![Signup Page](path_to_screenshot/product-details.png)
+![User Profile Page](https://github.com/Moh-Sad/Advanced-Java-Project/blob/main/Screenshots/userProfile.png)
 
-![Signup Page](path_to_screenshot/product-details.png)
+![Products Page](https://github.com/Moh-Sad/Advanced-Java-Project/blob/main/Screenshots/Products.png)
 
-![Signup Page](path_to_screenshot/product-details.png)
+![Product Details Page](https://github.com/Moh-Sad/Advanced-Java-Project/blob/main/Screenshots/ProductDetials.png)
 
-![Signup Page](path_to_screenshot/product-details.png)
-
-![Signup Page](path_to_screenshot/product-details.png)
+![Cart Page](https://github.com/Moh-Sad/Advanced-Java-Project/blob/main/Screenshots/Cart.png)
