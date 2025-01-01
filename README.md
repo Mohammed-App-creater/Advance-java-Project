@@ -1,6 +1,3 @@
-Sure! Here's the updated documentation with placeholders for screenshots. You can replace the placeholder paths with actual image paths later.
-
-```markdown
 # Online Shopping Platform Documentation
 
 This project is a full-stack online shopping platform built with **Java Servlets** and **MySQL** for the backend, and **Vite + React + Redux** for the frontend. It allows users to view product details, manage their shopping cart, and submit reviews. The platform exposes RESTful APIs that are consumed by a React frontend application to display product information and customer reviews.
@@ -362,4 +359,10 @@ This project is licensed under the MIT License. See `LICENSE` for details.
 
 ![Product Details Page](https://github.com/Moh-Sad/Advanced-Java-Project/blob/main/Screenshots/ProductDetials.png)
 
+<<<<<<< HEAD
 ![Cart Page](https://github.com/Moh-Sad/Advanced-Java-Project/blob/main/Screenshots/Cart.png)
+=======
+![Signup Page](path_to_screenshot/product-details.png)
+
+![Signup Page](path_to_screenshot/product-details.png)
+>>>>>>> 1c24060ed9d9c16660ba7560877a0196ddff8047
