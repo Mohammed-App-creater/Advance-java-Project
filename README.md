@@ -346,7 +346,7 @@ This project is licensed under the MIT License. See `LICENSE` for details.
 
 ## Screenshots
 
-### Frontend Example: 
+### Frontend Example:
 ![Signup Page](https://github.com/Moh-Sad/Advanced-Java-Project/blob/main/Screenshots/signup.png)
 
 ![Login Page](https://github.com/Moh-Sad/Advanced-Java-Project/blob/main/Screenshots/login.png)
@@ -359,10 +359,4 @@ This project is licensed under the MIT License. See `LICENSE` for details.
 
 ![Product Details Page](https://github.com/Moh-Sad/Advanced-Java-Project/blob/main/Screenshots/ProductDetials.png)
 
-<<<<<<< HEAD
 ![Cart Page](https://github.com/Moh-Sad/Advanced-Java-Project/blob/main/Screenshots/Cart.png)
-=======
-![Signup Page](path_to_screenshot/product-details.png)
-
-![Signup Page](path_to_screenshot/product-details.png)
->>>>>>> 1c24060ed9d9c16660ba7560877a0196ddff8047
